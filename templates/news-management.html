@@ -1,0 +1,64 @@
+<div class="row create-news-row" id="formToCreateNews" hidden>
+  <div class="col s12 m6">
+	  <form class="col s12" name="createNewForm" ng-submit="createNewForm.$valid && createNewsFile()" novalidate>
+	    <div class="card blue-grey darken-1">
+	      <div class="card-content white-text">
+	        <span class="card-title">Create new</span>
+	        <div class="row">
+
+			    <div class="row">
+			      <div class="input-field col s6">
+			        <input id="title_new" type="text" class="validate" ng-model="title_new" ng-maxlength="50" required>
+			        <label for="title_new">Title new</label>
+			      </div>
+            <div class="input-field col s6">
+			        <input id="font_new" type="text" class="validate" ng-model="font_new" ng-maxlength="250" required>
+			        <label for="font_new">Font</label>
+			      </div>
+			      <div class="input-field col s12">
+			        <textarea id="textarea1" class="materialize-textarea" ng-model="desc_new" required></textarea>
+			        <label for="textarea1">Textarea</label>
+			       </div>
+			    </div>
+			    <div class="row">
+			      <div class="file-field input-field">
+						<div class="btn">
+							<span>File</span>
+							<input type="file" file-model="createFile" accept="image/jpeg, image/png" required/>
+						</div>
+						<div class="file-path-wrapper">
+							<input id="file-new-upload" class="file-path validate" type="text" placeholder="Upload new photo" ng-model="titlenewphoto" required/>
+						</div>
+					</div>
+			    </div>
+			</div>
+	      </div>
+	      <div class="card-action">
+	        <button class="btn waves-effect waves-light" type="submit" ng-disabled="createNewForm.$invalid" name="action">Create New
+				<i class="material-icons right">send</i>
+			</button>
+	      </div>
+	    </div>
+    </form>
+  </div>
+</div>
+
+
+<div style="padding-bottom: 5vw;" ng-repeat="nw in newsArray track by $index">
+	<div class="new-main">
+		<div class="card medium">
+			<div class="card-image waves-effect waves-block waves-light">
+				<img class="activator" src="{{nw.getNewPhotoPath()}}">
+			</div>
+			<div class="card-content">
+				<span class="card-title activator grey-text text-darken-4">{{nw.getTitle()}}<i class="material-icons right">more_vert</i></span>
+				<p><a href="{{nw.getFont()}}">Font: {{nw.getFont()}}</a></p>
+        <a ng-if="toCreateNews == 1" class="waves-effect waves-light btn btn-remove-news" name="new-{{nw.getId()}}" ng-click="sessionCtrl.removeNew(nw.getId());">Remove new</a>
+			</div>
+			<div class="card-reveal">
+				<span class="card-title grey-text text-darken-4">{{nw.getTitle()}}<i class="material-icons right">close</i></span>
+				<p>{{nw.getDescription()}}</p>
+			</div>
+		</div>
+	</div>
+</div>

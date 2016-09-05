@@ -1,0 +1,119 @@
+<div class="row">
+
+    <!--Temperature panel-->
+    <div class="col s12 m6">
+        <div class="card-panel orange accent-2">
+            <span class="card-title">Temperature</span>
+            <br>
+            <br>
+            <span class="white-text">Outside temperature: {{weatherDataArray[0].temp}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Temperature trending: {{weatherDataArray[0].temptrend}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Apparent temperature: {{weatherDataArray[0].apptemp}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Highest temperature today: {{weatherDataArray[0].tempTH}} º{{weatherDataArray[0].tempunitnodeg}} at {{weatherDataArray[0].TtempTH}}</span>
+            <br>
+            <span class="white-text">Lowest temperature today: {{weatherDataArray[0].tempTL}} º{{weatherDataArray[0].tempunitnodeg}} at {{weatherDataArray[0].TtempTL}}</span>
+            <br>
+            <span class="white-text">Inside temperature: {{weatherDataArray[0].intemp}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Relative humidity: {{weatherDataArray[0].hum}} %</span>
+            <br>
+            <span class="white-text">Inside humidity: {{weatherDataArray[0].inhum}} %</span>
+            <br>
+            <span class="white-text">Humidex: {{weatherDataArray[0].humidex}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Heat index: {{weatherDataArray[0].heatindex}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Dew point: {{weatherDataArray[0].dew}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+        </div>
+    </div>
+
+    <!--Wind panel-->
+    <div class="col s12 m6">
+        <div class="card-panel green lighten-2">
+            <span class="card-title">Wind</span>
+            <br>
+            <br>
+            <span class="white-text">Wind speed: {{weatherDataArray[0].wspeed}} {{weatherDataArray[0].windunit}}</span>
+            <br>
+            <span class="white-text">Latest wind speed reading: {{weatherDataArray[0].wlatest}} {{weatherDataArray[0].windunit}}</span>
+            <br>
+            <span class="white-text">Wind direction: {{weatherDataArray[0].bearing}}º ({{weatherDataArray[0].currentwdir}})</span>
+            <br>
+            <span class="white-text">Beaufort wind speed scale: {{weatherDataArray[0].beaufortnumber}}</span>
+            <br>
+            <span class="white-text">Wind chill: {{weatherDataArray[0].wchill}} º{{weatherDataArray[0].tempunitnodeg}}</span>
+            <br>
+            <span class="white-text">Today's highest wind speed (average): {{weatherDataArray[0].windTM}} {{weatherDataArray[0].windunit}} at {{weatherDataArray[0].TwindTM}}</span>
+            <br>
+            <span class="white-text">Today's highest wind gust: {{weatherDataArray[0].wgustTM}} {{weatherDataArray[0].windunit}} at {{weatherDataArray[0].TwgustTM}}</span>
+            <br>
+            <span class="white-text">10-minute average wind bearing: {{weatherDataArray[0].avgbearing}} º ({{weatherDataArray[0].wdir}})</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <!--Rainfall panel-->
+    <div class="col s12 m6">
+        <div class="card-panel cyan darken-2">
+            <span class="card-title">Rainfall</span>
+            <br>
+            <br>
+            <span class="white-text">Current rain rate: {{weatherDataArray[0].rrate}} {{weatherDataArray[0].rainunit}}/h</span>
+            <br>
+            <span class="white-text">Rain today: {{weatherDataArray[0].rfall}} {{weatherDataArray[0].rainunit}}</span>
+            <br>
+            <span class="white-text">Monthly rainfall: {{weatherDataArray[0].rmonth}} {{weatherDataArray[0].rainunit}}</span>
+            <br>
+            <span class="white-text">Yearly rainfall: {{weatherDataArray[0].ryear}} {{weatherDataArray[0].rainunit}}</span>
+            <br>
+            <span class="white-text">Yesterday's rainfall: {{weatherDataArray[0].rfallY}} {{weatherDataArray[0].rainunit}}</span>
+            <br>
+            <span class="white-text">Rainfall last hour: {{weatherDataArray[0].rhour}} {{weatherDataArray[0].rainunit}}</span>
+        </div>
+    </div>
+
+    <!--Pressure panel-->
+    <div class="col s12 m6">
+        <div class="card-panel deep-purple darken-1">
+            <span class="card-title">Pressure</span>
+            <br>
+            <br>
+            <span class="white-text">Current pressure: {{weatherDataArray[0].press}} {{weatherDataArray[0].pressunit}}</span>
+            <br>
+            <span class="white-text">Pressure trend: {{weatherDataArray[0].presstrendval}} {{weatherDataArray[0].pressunit}}</span>
+            <br>
+            <span class="white-text">Today's high pressure: {{weatherDataArray[0].pressTH}} {{weatherDataArray[0].pressunit}} at {{weatherDataArray[0].TpressTH}}</span>
+            <br>
+            <span class="white-text">Today's low pressure: {{weatherDataArray[0].pressTL}} {{weatherDataArray[0].pressunit}} at {{weatherDataArray[0].TpressTL}}</span>
+        </div>
+    </div>
+</div>
+
+<!--Other parameters panel-->
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card-panel red darken-2">
+            <span class="card-title">Other parameters</span>
+            <br>
+            <br>
+            <span class="white-text">UV index: {{weatherDataArray[0].UV}}</span>
+            <br>
+            <span class="white-text">Evapotranspiration: {{weatherDataArray[0].ET}}</span>
+            <br>
+            <span class="white-text">Solar radiation: {{weatherDataArray[0].SolarRad}} W/m2</span>
+            <br>
+            <span class="white-text">Light range: {{weatherDataArray[0].isdaylight}}</span>
+            <br>
+            <span ng-if="sensorLost == 0" class="white-text">Sensor state: {{weatherDataArray[0].SensorContactLost}}</span>
+            <span ng-if="sensorLost == 1" class="white-text">Sensor state:</span><span ng-if="sensorLost == 1" style='color: red; font-size: 1.5em;'> Contact with sensor lost!</span>
+            <br>
+            <br>
+            <p style="font-style: italic"><i>*Note: depending in your weather station this values will be shown or not</i></p>
+        </div>
+    </div>
+</div>

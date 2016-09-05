@@ -1,0 +1,131 @@
+<!-- WindChill-->
+
+<div class="row to-mid-center">
+    <div class="col s12 m5">
+        <div class="card-panel orange lighten-2">
+            <span class="white-text">Windchill calculate</span>
+            <br>
+            <span> Calculates the windchill writing first the temperature, then the wind velocity. The result will be the sensation of our bodies.</span>
+            <div class="row">
+                <form name="wcForm" ng-submit="wcForm.$valid && sessionCtrl.wcCalculate()" novalidate>
+                    <div class="input-field col s6">
+                        <input id="wcTemp" type="text" class="validate" ng-model="wcTmp" ng-pattern="/^\d+$/" required>
+                        <label for="wcTemp">Temperature</label>
+
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="wcWv" type="text" class="validate" ng-model="wcWv" ng-pattern="/^\d+$/" required>
+                        <label for="wcWv">Wind velocity</label>
+                    </div>
+                    <button class="btn waves-effect waves-light" ng-disabled="wcForm.$invalid" name="action">Calculate!
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <div class="input-field col s6" style="text-align:right !important;">
+                        Result: <span> {{wcRes | rounded:2}} ºC</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rain Intensity-->
+
+    <div class="row to-mid-center">
+        <div class="col s12 m5">
+            <div class="card-panel deep-orange darken-3">
+                <span class="white-text">Rain intensity calculate</span>
+                <br>
+                <span>Each weather radar have an scale of intensity qualified in decibels(dB). In order to calculate the intensity measured in liters per hour, you must write the intensity that the meteorology radar says.</span>
+                <div class="row">
+                    <form name="riForm" ng-submit="riForm.$valid && sessionCtrl.riCalculate()" novalidate>
+                        <div class="input-field col s6">
+                            <input id="riDb" type="text" class="validate" ng-model="riDb" ng-pattern="/^\d+$/" required>
+                            <label for="riDb">Value(dB)</label>
+                        </div>
+                        <div class="input-field col s6">
+                          Result: 
+                            <span ng-if="norm==1">{{riRes | rounded:2}} mm/h</span>
+                            <span ng-if="norm==0">{{hail}}</span>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button class="btn waves-effect waves-light" ng-disabled="riForm.$invalid" name="action">Calculate!
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Snow level-->
+
+        <div class="row to-mid-center">
+            <div class="col s12 m5">
+                <div class="card-panel cyan accent-1">
+                    <span class="green-text">Snow level calculate</span>
+                    <br>
+                    <span>In order to calculate the snow level we have to write the temperature of 500 hPa(~5500m), the temperature of 850 hPa(~1500m), the surface temperature and the geopotencial height of 850 hPa. All these values will be found in professional weather maps.</span>
+                    <div class="row">
+                        <form name="slForm" ng-submit="slForm.$valid && sessionCtrl.slCalculate()" novalidate>
+                            <div class="input-field col s6">
+                                <input id="sl5Tmp" type="text" class="validate" ng-model="sl5Tmp" ng-pattern="/^[0-9-]+$/" required>
+                                <label for="sl5Tmp">Temperature 500 hPa</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="sl8Tmp" type="text" class="validate" ng-model="sl8Tmp" ng-pattern="/^[0-9-]+$/" required>
+                                <label for="sl8Tmp">Temperature 850 hPa</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="slSp" type="text" class="validate" ng-model="slSp" ng-pattern="/^[0-9-]+$/" required>
+                                <label for="slSp">Surface temperature</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="sl8Gp" type="text" class="validate" ng-model="sl8Gp" ng-pattern="/^\d+$/" required>
+                                <label for="sl8Gp">Geopotencial 850 hPa</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                Result: <span>{{slRes}} meters</span>
+                            </div>
+
+                            <br>
+                            <br>
+                            <button class="btn waves-effect waves-light" ng-disabled="slForm.$invalid" name="action">Calculate!
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thunderstorm distance -->
+
+            <div class="row to-mid-center">
+                <div class="col s12 m5">
+                    <div class="card-panel yellow lighten-1">
+                        <span class="red-text">Thunderstorm distance calculate</span>
+                        <br>
+                        <span>In order to know the distance between you and the storm, we have to write the time has passed between the lighting you saw and the thunder sound.</span>
+                        <div class="row">
+                            <form name="tdForm" ng-submit="tdForm.$valid && sessionCtrl.tdCalculate()" novalidate>
+                                <div class="input-field col s6">
+                                    <input id="tdSec" type="text" class="validate" ng-model="tdSec" ng-pattern="/^[0-9.]+$/" required>
+                                    <label for="tdSec">Seconds</label>
+                                </div>
+                                <br>
+                                <br>
+                                <button class="btn waves-effect waves-light" ng-disabled="tdForm.$invalid" name="action">Calculate!
+                                    <i class="material-icons right">send</i>
+                                </button>
+                                <div class="input-field col s6">
+                                    Result: <span>{{tdRes}} meters</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>

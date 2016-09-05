@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Material-icon;
+    src: url("../font/material-design-icons/Material-Design-Icons.ttf");
+}
+
+body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: #00897b;
+}
+
+.row {
+    margin-left: 25%;
+    margin-top: 8vw;
+    position: absolute;
+    width: 100%;
+}

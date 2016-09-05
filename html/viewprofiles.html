@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myweatherapp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>MWC - Profile</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/custombox.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/css/jquery.Jcrop.min.css" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/sun.png" />
+
+    <!--jQuery framework load-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../js/frameworks/jQuery/jquery.Jcrop.min.js"></script>
+    <script src="../js/frameworks/jQuery/jquery-cookie/jquery.cookie.js" type="text/javascript" xml:space="preserve"></script>
+
+    <!--Angular framework load-->
+    <script src="../js/frameworks/angular/angular.min.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/frameworks/angular/angular-file-upload.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/frameworks/angular/i18n/angular-locale_es-es.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/frameworks/angular/ng-currency.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/frameworks/angular/ngAutocomplete.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/frameworks/angular/ng-jcrop.js" type="text/javascript" xml:space="preserve"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script src="../js/frameworks/angular/angular.dcb-img-fallback.js" type="text/javascript" xml:space="preserve"></script>
+
+    <!--Materialize framework load-->
+    <script src="../js/frameworks/materialize/materialize.js"></script>
+
+    <!--Datepicker framework load-->
+    <script src="../js/frameworks/datepicker/momentjs.js"></script>
+    <script src="../js/frameworks/datepicker/bootstrap-material-datetimepicker.js"></script>
+
+    <!--Custom Box framework load-->
+    <script src="../js/frameworks/custombox/custombox.js"></script>
+    <script src="../js/frameworks/custombox/legacy.js"></script>
+
+    <!--Sweet Alert framework load-->
+    <script src="../js/frameworks/sweetAlert/sweetalert.min.js"></script>
+
+
+    <!--Own Code-->
+    <script src="../js/model/userObj.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/model/newObj.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/model/photoObj.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/control/generalFunctions.js" type="text/javascript" xml:space="preserve"></script>
+    <script src="../js/control/profilesView.js"></script>
+    <script src="../js/control/custombox.js"></script>
+</head>
+
+<body ng-controller="profilesController as profilesCtrl" ng-init="profilesCtrl.sessionControl(); profilesCtrl.checkSession(); profilesCtrl.getUser(); profilesCtrl.checkAdmin()">
+
+    <!-- ************************************************************** MAIN MENU **************************************************************************-->
+
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="../index.html">Main menu</a></li>
+        <li><a href="weatherst.html">My weather station</a></li>
+        <li class="divider"></li>
+        <li><a href="meteocalc.html">Meteorological calculator</a></li>
+    </ul>
+    <nav class="blue-grey darken-1">
+        <div class="nav-wrapper">
+            <a href="../index.html" class="brand-logo"><img class="logo-sun" src="../assets/sun.png"><span class="title-logo">My Weather Cloud</span></a>
+
+            <!-- Normal navbar-->
+            <ul class="right hide-on-med-and-down">
+                <li ng-if="myProfile"><a href="profile.html">Profile &nbsp;<div class="chip"><img fallback-src="../assets/user.png" ng-src="../{{userAvatarPath}}">{{userNameAux}}</div></a></li>
+                <li ng-if="toLogIn" id="loginClicked"><a href="">Log in</a></li>
+
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Other options<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li ng-if="myProfile" id="logoutClicked" ng-click="profilesCtrl.connectionDestroy()"><a href="">Logout</a></li>
+            </ul>
+
+            <!-- Mobile navbar-->
+            <ul id="slide-out" class="side-nav">
+                <li ng-if="myProfile"><a href="profile.html">Profile &nbsp;<div class="chip"><img fallback-src="../assets/user.png" ng-src="../{{userAvatarPath}}">{{userNameAux}}</div></a></li>
+                <li ng-if="toLogIn" id="loginClickedMobile"><a href="">Log in</a></li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header">Other options<i class="mdi-navigation-arrow-drop-down"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="../index.html">Main menu</a></li>
+                                    <li><a href="weatherst.html">My weather station</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="meteocalc.html">Meteorological calculator</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li ng-if="myProfile" id="logoutClicked" ng-click="profilesCtrl.connectionDestroy()"><a href="">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+    </nav>
+
+    <!-- ************************************************************** FINISH MAIN MENU **************************************************************************-->
+    <div class="first-div-profile"></div>
+
+    <div class="row profile-row">
+        <div class="col s12 m5">
+            <div class="card-panel indigo lighten-5">
+                <div class="main-profile-photo">
+                    <img ng-src="../{{user.getAvatarPath()}}" class="responsive-img circle" fallback-src="../assets/user.png">
+                </div>
+                <div class="main-profile-data-picture">
+                    <span class="name-profile">{{user.getName()}} {{user.getSurname()}}</span>
+                    <br>
+                    <span class="name-profile location">{{user.getLocation()}}</span>
+                </div>
+                <div style="text-align: right;">
+                </div>
+
+                <!-- *******************************************STARTS PROFILE INFO****************************************-->
+
+                <div class="main-profile-data in-the-right">
+                    <blockquote>
+                        <span>Name: </span>
+                        <input ng-disabled="editProfile == 0" type="text" ng-model="userNS">
+                    </blockquote>
+                    <blockquote>
+                        <span>Location: </span>
+                        <input ng-disabled="editProfile == 0" id="userUpdateLocation" type="text" ng-model="user.location" />
+                    </blockquote>
+                    <blockquote>
+                        <span>Email: </span>
+                        <input ng-disabled="editProfile == 0" id="userUpdateEmail" type="email" ng-model="user.email" ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" required>
+                    </blockquote>
+                    <blockquote>
+                        <span>Birth date: </span>
+                        <input ng-disabled="editProfile == 0" id="userUpdateBirthday" type="text" ng-model="user.birthday" placeholder="Birth date">
+                    </blockquote>
+                </div>
+                <!-- *******************************************END PROFILE INFO****************************************-->
+            </div>
+        </div>
+    </div>
+
+    <div class="main-photos-div" ng-init="profilesCtrl.getPhotosProfile();">
+        <span class="text-start-photos">{{user.getName()}}'s Photos </span>
+        <br>
+        <br>
+        <br>
+
+        <div class="row to-center" ng-repeat="pho in photosArray track by $index">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img id="photo{{$index}}" class="materialboxed" width="720" src="../{{pho.getPhoto_path()}}" ng-click="profilesCtrl.activateAnimation()">
+                        <span class="card-title">{{pho.getPhoto_name()}}</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <p style="display:inline-block">{{pho.getPhoto_location()}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div ng-if="administrator == 1" class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li ng-click="profilesCtrl.removeUser()"><a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Delete User"><i class="material-icons">thumb_down</i></a></li>
+            <li ng-click="profilesCtrl.givePrivileges()"><a class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Give privileges"><i class="material-icons">stars</i></a></li>
+        </ul>
+    </div>
+
+    <!--FOOTER-->
+    <footer class="page-footer blue-grey darken-1">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">My Weather Cloud</h5>
+                    <p class="grey-text text-lighten-4">The unified weather connection in the cloud.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="http://www.ies-provenzana.com">IES Provençana</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://www.meteo.cat">Meteocat</a></li>
+                        <li><a class="grey-text text-lighten-3" href="http://www.meteociel.fr">Météociel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2016 All rights reserved
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

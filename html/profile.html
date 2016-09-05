@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myweatherapp">
+
+<head>
+	<meta charset="UTF-8">
+	<meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>MWC - Profile</title>
+
+	<!--CSS-->
+	<link rel="stylesheet" href="../css/materialize.css">
+	<link rel="stylesheet" href="../css/custombox.css">
+	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="../css/sweetalert.css">
+	<link rel="stylesheet" href="../css/bootstrap-material-datetimepicker.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.12/css/jquery.Jcrop.min.css" />
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="shortcut icon" type="image/x-icon" href="../assets/sun.png" />
+
+	<!--jQuery framework load-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="../js/frameworks/jQuery/jquery.Jcrop.min.js"></script>
+	<script src="../js/frameworks/jQuery/jquery-cookie/jquery.cookie.js" type="text/javascript" xml:space="preserve"></script>
+
+	<!--Angular framework load-->
+	<script src="../js/frameworks/angular/angular.min.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/frameworks/angular/angular-file-upload.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/frameworks/angular/i18n/angular-locale_es-es.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/frameworks/angular/ng-currency.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/frameworks/angular/ngAutocomplete.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/frameworks/angular/ng-jcrop.js" type="text/javascript" xml:space="preserve"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+	<script src="../js/frameworks/angular/angular.dcb-img-fallback.js" type="text/javascript" xml:space="preserve"></script>
+
+	<!--Materialize framework load-->
+	<script src="../js/frameworks/materialize/materialize.js"></script>
+
+	<!--Datepicker framework load-->
+	<script src="../js/frameworks/datepicker/momentjs.js"></script>
+	<script src="../js/frameworks/datepicker/bootstrap-material-datetimepicker.js"></script>
+
+	<!--Custom Box framework load-->
+	<script src="../js/frameworks/custombox/custombox.js"></script>
+	<script src="../js/frameworks/custombox/legacy.js"></script>
+
+	<!--Sweet Alert framework load-->
+	<script src="../js/frameworks/sweetAlert/sweetalert.min.js"></script>
+
+	<!--Own Code-->
+	<script src="../js/model/userObj.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/model/newObj.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/model/photoObj.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/control/generalFunctions.js" type="text/javascript" xml:space="preserve"></script>
+	<script src="../js/control/ownProfile.js"></script>
+	<script src="../js/control/custombox.js"></script>
+</head>
+
+<body ng-controller="profileController as profileCtrl" ng-init="profileCtrl.sessionControl(); profileCtrl.checkSession();">
+
+	<!-- ************************************************************** MAIN MENU **************************************************************************-->
+
+	<!-- Dropdown Structure -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="../index.html">Main menu</a></li>
+		<li><a href="weatherst.html">My weather station</a></li>
+		<li class="divider"></li>
+		<li><a href="meteocalc.html">Meteorological calculator</a></li>
+	</ul>
+	<nav class="blue-grey darken-1">
+		<div class="nav-wrapper">
+			<a href="../index.html" class="brand-logo"><img class="logo-sun" src="../assets/sun.png"><span class="title-logo">My Weather Cloud</span></a>
+
+			<!-- Normal navbar-->
+			<ul class="right hide-on-med-and-down">
+				<li class="active" ng-if="myProfile"><a href="profile.html">Profile &nbsp;<div class="chip"><img fallback-src="../assets/user.png" ng-src="../{{userAvatarPath}}">{{userNameAux}}</div></a></li>
+				<li ng-if="toLogIn" id="loginClicked"><a href="">Log in</a></li>
+
+				<li><a class="dropdown-button" href="#!" data-activates="dropdown1">Other options<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li ng-if="myProfile" id="logoutClicked" ng-click="profileCtrl.connectionDestroy()"><a href="">Logout</a></li>
+			</ul>
+
+			<!-- Mobile navbar-->
+			<ul id="slide-out" class="side-nav">
+				<li ng-if="myProfile"><a href="profile.html">Profile &nbsp;<div class="chip"><img fallback-src="../assets/user.png" ng-src="../{{userAvatarPath}}">{{userNameAux}}</div></a></li>
+				<li ng-if="toLogIn" id="loginClickedMobile"><a href="">Log in</a></li>
+				<li class="no-padding">
+					<ul class="collapsible collapsible-accordion">
+						<li>
+							<a class="collapsible-header">Other options<i class="mdi-navigation-arrow-drop-down"></i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li><a href="../index.html">Main menu</a></li>
+									<li><a href="weatherst.html">My weather station</a></li>
+									<li class="divider"></li>
+									<li><a href="meteocalc.html">Meteorological calculator</a></li>
+								</ul>
+							</div>
+						</li>
+						<li ng-if="myProfile" id="logoutClicked" ng-click="profileCtrl.connectionDestroy()"><a href="">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+		</div>
+	</nav>
+
+	<!-- ************************************************************** FINISH MAIN MENU **************************************************************************-->
+	<div class="first-div-profile"></div>
+
+	<div class="row profile-row">
+		<div class="col s12 m5">
+			<div class="card-panel indigo lighten-5">
+				<div class="main-profile-photo">
+					<img ng-src="../{{userAvatarPath}}" class="responsive-img circle" fallback-src="../assets/user.png">
+					<br>
+					<input type="file" ng-jcrop-input="upload" file-model="uploadPhotoProfile" id="cropImage" accept="image/jpeg, image/png" /> <span>(max: 2MB)</span>
+					<div ng-show="thumb == 1" style="margin-left: 25%;" id="croppedImg" ng-jcrop="obj.src" ng-jcrop-config-name="upload" selection="obj.selection" thumbnail="obj.thumbnail" hidden></div>
+					<a ng-show="thumb == 1" id="btn-up-pho" class="waves-effect waves-light btn btn-upload-profile" ng-click="renewPhoto()">Upload profile photo</a>
+				</div>
+				<div class="main-profile-data-picture">
+					<span class="name-profile">{{userNameAux}} - {{userNickname}}</span>
+					<br>
+					<span class="name-profile location">{{userLocation}}</span>
+				</div>
+				<div style="text-align: right;">
+				</div>
+
+				<!-- *******************************************STARTS PROFILE INFO****************************************-->
+
+				<div class="main-profile-data in-the-right">
+					<form accept-charset="utf-8" ng-submit="updateProfileForm.$valid && profileCtrl.updateProfile()" name="updateProfileForm" novalidate>
+						<blockquote ng-if="submitProfile==false">
+							<span>Name: </span>
+							<input ng-disabled="editProfile == 0" name="editableInput" type="text" ng-model="userNameAux">
+						</blockquote>
+						<blockquote ng-if="submitProfile==true">
+							<input ng-disabled="editProfile == 0" id="userUpdateName" name="editableInput" type="text" ng-model="userName" ng-pattern="/^[a-zA-Z ]+$/" placeholder="Name" required>
+						</blockquote>
+						<blockquote ng-if="submitProfile==true">
+							<input ng-disabled="editProfile == 0" id="userUpdateSurname" name="editableInput" type="text" ng-model="userSurname" ng-pattern="/^[a-zA-Z ]+$/" placeholder="Surname">
+						</blockquote>
+						<blockquote>
+							<span ng-if="submitProfile==false">Location: </span>
+							<input ng-if="submitProfile==false" ng-disabled="editProfile == 0" id="userUpdateLocation" name="editableInput" type="text" ng-model="userLocation" />
+							<div ng-if="submitProfile==true" class="form-group move-down">
+								<label for="Autocomplete"></label>
+								<input type="text" name="editableInput" id="Autocomplete" class="form-control" ng-autocomplete ng-model="userLocation" ng-pattern="/^[a-zA-Z , ]+$/" placeholder="Location" />
+							</div>
+						</blockquote>
+						<blockquote>
+							<span ng-if="submitProfile==false">Email: </span>
+							<input ng-disabled="editProfile == 0" id="userUpdateEmail" name="editableInput" type="email" ng-model="userEmail" ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" required>
+						</blockquote>
+						<blockquote>
+							<span ng-if="submitProfile==false">Birth date: </span>
+							<input ng-disabled="editProfile == 0" id="userUpdateBirthday" name="editableInput" type="date" ng-model="userBirthday" placeholder="Birth date">
+							<script>
+								$('#userUpdateBirthday').bootstrapMaterialDatePicker({
+									weekStart: 0,
+									time: false
+								});
+							</script>
+						</blockquote>
+						<blockquote>
+							<span ng-if="submitProfile==false">Password: </span>
+							<input ng-disabled="editProfile == 0" id="userUpdatePass1" name="editableInput" type="password" ng-model="userPassword" ng-minlength="4" ng-maxlength="16" required>
+						</blockquote>
+						<blockquote ng-if="submitProfile==true">
+							<input ng-disabled="editProfile == 0" id="userUpdatePass2" name="editableInput" type="password" ng-model="userCheckPassword" ng-minlength="4" ng-maxlength="16" placeholder="Repeat password" required>
+							<span ng-if="userCheckPassword != userPassword">Passwords doesn't match!</span>
+						</blockquote>
+						<blockquote>
+							<span ng-if="submitProfile==false">Do you want to receive newsletter? </span>
+							<input id="newsletterEdit" name="editableInput" type="checkbox" class="validate" ng-model="userNewsletter" ng-disabled="editProfile == 0">
+							<label for="newsletterEdit">Newsletter</label>
+						</blockquote>
+						<button ng-if="submitProfile" id="edit_profile_submit" class="btn waves-effect waves-light" style="margin-left: 46%" ng-disabled="updateProfileForm.$invalid" name="action">Submit
+							<i class="material-icons right">assignment</i>
+						</button>
+					</form>
+				</div>
+				<!-- *******************************************END PROFILE INFO****************************************-->
+			</div>
+		</div>
+	</div>
+
+
+	<div class="main-photos-div" ng-init="profileCtrl.getPhotos();">
+		<span class="text-start-photos">{{userNameAux}}'s Photos </span>
+		<br>
+		<br>
+		<br>
+
+		<div class="row to-center" ng-repeat="pho in photosArray track by $index">
+			<div class="col s12 m7">
+				<div class="card">
+					<div class="card-image">
+						<img id="photo{{$index}}" class="materialboxed" width="720" src="../{{pho.getPhoto_path()}}" ng-click="profileCtrl.activateAnimation()">
+						<span class="card-title">{{pho.getPhoto_name()}}</span>
+					</div>
+					<div class="card-content">
+						<div class="row">
+							<p style="display:inline-block">{{pho.getPhoto_location()}}</p>
+							<a id="idOfPhoto{{$index}}" class="waves-effect waves-light btn btn-remove-photo" name="{{pho.getId()}}" ng-click="profileCtrl.removePhoto(pho.getId())">Remove photo</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row" ng-show="showUploadPhotos == true">
+		<div class="col s12 m6" id="formToUploadPhotos" hidden>
+			<div class="card teal darken-2">
+				<div class="file-upload">
+					<div class="card-content white-text">
+						<span class="card-title">Upload photo</span>
+						<input type="text" ng-model="name" hidden>
+						<input type="text" ng-model="nameOfPhoto" placeholder="Name">
+						<input type="text" ng-model="photoLocation" placeholder="Location">
+						<!--<input id="datePhoto" type="text" ng-model="photoTime" placeholder="Date">
+						<script>
+						$('#datePhoto').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', lang : 'es', weekStart : 1, cancelText : 'ANNULER' });
+						</script>-->
+						<div class="file-field input-field">
+							<div class="btn">
+								<span>File</span>
+								<input type="file" file-model="myFile" />
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text" />
+							</div>
+						</div>
+					</div>
+					<div class="card-action">
+						<button class="btn waves-effect waves-light" ng-click="uploadFile()">Upload photo</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+		<a class="btn-floating btn-large red">
+			<i class="material-icons">menu</i>
+		</a>
+		<ul>
+			<li><a id="edit_profile" ng-click="submitProfile = true" class="btn-floating tooltipped red" data-position="top" data-delay="50" data-tooltip="Edit Profile"><i class="material-icons">mode_edit</i></a></li>
+			<li><a ng-click="profileCtrl.modalToUpload()" class="btn-floating tooltipped blue" data-position="top" data-delay="50" data-tooltip="Upload Photo"><i class="material-icons">attach_file</i></a></li>
+		</ul>
+	</div>
+
+	<!--FOOTER-->
+	<footer class="page-footer blue-grey darken-1">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">My Weather Cloud</h5>
+					<p class="grey-text text-lighten-4">The unified weather connection in the cloud.</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<h5 class="white-text">Links</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="http://www.ies-provenzana.com">IES Provençana</a></li>
+						<li><a class="grey-text text-lighten-3" href="http://www.meteo.cat">Meteocat</a></li>
+						<li><a class="grey-text text-lighten-3" href="http://www.meteociel.fr">Météociel</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2016 All rights reserved
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>

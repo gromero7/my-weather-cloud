@@ -1,0 +1,59 @@
+<div class="login_div" id="loginDiv" hidden>
+	<br>
+	<div class="row">
+		<div class="col s12 m6">
+			<div class="card blue-grey darken-1">
+				<div class="card-content white-text">
+
+					<form ng-show="loginSucc == 1" ng-submit="sessionCtrl.connection();" name="loginForm" novalidate>
+						<span class="card-title">Log In</span>
+						<div class="main-login">
+							<div class="row">
+								<div class="input-field col s6">
+									<input id="nickname" type="text" class="validate" ng-model="user.nickname" ng-pattern="/^[^[\]:;|=+*?¿$%&·!¡<>/\\,]+$/" ng-minlength="4" ng-maxlength="25" required>
+									<label for="nickname">Nickname</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s12">
+									<input id="password" type="password" class="validate" ng-model="user.password" ng-minlength="4" ng-maxlength="16" required>
+									<label for="password">Password</label>
+								</div>
+							</div>
+							<a href="" ng-click="sessionCtrl.toShowRecover();">Have you forgot your password?</a>
+							<div class="card-action">
+								<button class="btn waves-effect waves-light" style="margin-bottom: 12px; margin-top: 40px;" type="submit" ng-disabled="loginForm.$invalid" name="action">Submit
+									<i class="material-icons right">send</i>
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<form name="formToRecoverPassword" ng-show="loginRec == 1" ng-submit="formToRecoverPassword.$valid && sessionCtrl.recoverPassword();">
+						<span class="card-title">Recover Password</span>
+						<!--Recover Password-->
+						<div class="main-login" >
+							<div class="row">
+								<span>Please enter your email in order to recover your password </span>
+								<div class="input-field col s6">
+									<input id="email" type="email" class="validate" ng-model="emailRecover" ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" ng-minlength="4" required>
+									<label for="email">Email</label>
+								</div>
+							</div>
+							<div class="card-action">
+								<button ng-click="sessionCtrl.toReturnLogin()" class="btn waves-effect waves-light" style="margin-bottom: 12px; margin-top: 40px;" name="action">Return to login
+									<i class="material-icons right">send</i>
+								</button>
+								<button class="btn waves-effect waves-light" style="margin-bottom: 12px; margin-top: 40px;" type="submit" ng-disabled="formToRecoverPassword.$invalid" name="action">Submit
+									<i class="material-icons right">verified_user</i>
+								</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

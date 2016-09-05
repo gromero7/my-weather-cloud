@@ -1,0 +1,60 @@
+<div id="registerDiv" class="register_div" style="width: 85% !important;" ng-init="sessionCtrl.loadPicker()" hidden>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Sign Up</span>
+
+                    <form ng-submit="signUpForm.$valid && sessionCtrl.registerUser() && confirmPass == user.password" name="signUpForm" novalidate>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="name" type="text" class="validate" ng-model="user.name" ng-pattern="/^[a-zA-Z]+$/" required>
+                                <label for="name">Name *</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="surname" type="text" class="validate" ng-model="user.surname" ng-pattern="/^[a-zA-Z ]+$/">
+                                <label for="surname">Surname</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="nickname" type="text" class="validate" ng-model="user.nickname" ng-pattern="/^[^[\]:;|=+*?¿$%&·!¡<>/\\,]+$/" required>
+                                <label for="nickname">Nickname *</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="email" type="email" class="validate" ng-model="user.email" ng-pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/" required>
+                                <label for="email">Email *</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="password" type="password" class="validate" ng-model="user.password" ng-minlength="4" ng-maxlength="16" required>
+                                <label for="password">Password *</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="passwordConfirm" type="password" class="validate" ng-model="confirmPass" required>
+                                <label for="passwordConfirm">Confirm Password *</label>
+                                <span ng-if="confirmPass != user.password">Passwords doesn't match!</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="newsletter" type="checkbox" class="validate" ng-model="user.newsletter">
+                                <label for="newsletter">Newsletter</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card-action">
+                            <button class="btn waves-effect waves-light" style="margin-bottom: 12px; margin-top: 40px;" ng-disabled="signUpForm.$invalid" name="action">Sign up!
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

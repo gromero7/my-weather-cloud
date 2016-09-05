@@ -1,0 +1,215 @@
+@font-face {
+    font-family: RobotoBold;
+    src: url("../font/roboto/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: RobotoThin;
+    src: url("../font/roboto/Roboto-Thin.ttf");
+}
+body {
+    background-color: #EFEFEF;
+    overflow-x: hidden;
+}
+.user-view {
+    margin-left: 0vw;
+    margin-top: -2vw;
+    position: absolute;
+    width: 9%;
+}
+.logo-sun {
+    width: 1.3em;
+}
+.title-logo {
+    font-size: 1em;
+    margin-left: 2%;
+}
+.search-bar {
+    margin-left: -65%;
+    position: absolute;
+    width: auto;
+    z-index: 10000;
+}
+.navbar-style {
+    width: 32vw;
+}
+.search-icon-profile {
+    margin-left: 1vw;
+    margin-top: -0.2vw;
+}
+.close-icon-profile {
+    margin-left: -2vw !important;
+}
+.input_login {
+    text-align: center;
+}
+.main-profile-photo {
+    padding-bottom: 1%;
+    text-align: center;
+}
+img.responsive-img, video.responsive-video {
+    height: auto;
+    max-width: 20%;
+    padding-top: 1em;
+}
+.main-profile-data-picture {
+    text-align: center;
+}
+.name-profile {
+    font-family: "RobotoThin";
+    font-weight: bold;
+    font-size: 2vw;
+}
+.location {
+    font-size: 1.4vw;
+    font-weight: normal;
+}
+.main_image_weather {
+    background-color: #8D95AA;
+    height: 20em;
+    width: 100%;
+}
+.all-main-download {
+    margin-left: -20%;
+}
+.mws-title {
+    font-size: 1.5em;
+    font-family: "RobotoBold";
+    color: white;
+}
+.mws-subtitle {
+    font-size: 1.2em;
+    font-family: "RobotoThin";
+    color: white;
+}
+.mws-main-image {
+    margin-left: 23%;
+    margin-top: 2%;
+    width: 12vw;
+}
+.mws-text-title {
+    margin-top: -8%;
+    margin-left: 38%;
+}
+.ws-register {
+    background-color: #509C4C;
+    height: 20em;
+    width: 100%;
+}
+.img-ws {
+    margin-left: 23%;
+    margin-top: 2%;
+    width: 12vw;
+}
+.ws-register-text {
+    margin-left: 38%;
+    margin-top: -10%;
+    color: #1A3419;
+}
+.ws-title {
+    font-size: 1.5em;
+    font-family: "RobotoBold";
+}
+.btn-register-ws {
+    margin-left: 38%;
+    margin-top: 1%;
+    width: 9em;
+}
+#formRegisterWs {
+    position: absolute;
+    width: 90% !important;
+    margin-left: 29%;
+}
+.text-start-photos {
+    font-size: 2em;
+    font-family: "RobotoBold";
+}
+.mygraphstitle{
+  font-size: 1.7em;
+  font-family: "RobotoBold";
+  padding: 1%;
+}
+@media(min-width: 994px) {
+  .btn-remove-news {
+      margin-left: 80%;
+      margin-top: 7%;
+  }
+  .charts-position>div>div:nth-child(2){
+    margin-left: 50%;
+    margin-top: -15%;
+    position: absolute;
+  }
+    .btn-upload-profile {
+        margin-top: -10%;
+    }
+    .btn-remove-photo {
+        margin-left: 65%;
+    }
+    .to-navbar {
+        margin-left: -20%;
+        position: absolute;
+        width: 20vw;
+    }
+    .input-field input[type="search"]:focus {
+        background-color: #455a64;
+        color: white;
+    }
+    .first-div-profile {
+        background-color: #00838f;
+        height: 20em;
+        width: 100%;
+    }
+    .profile-row {
+        margin-left: 10%;
+        margin-top: -12%;
+        width: 190%;
+    }
+    .second-row {
+        float: left;
+    }
+    .canvas-size {
+        width: 30%;
+    }
+    .login_div {
+        margin-left: 25%;
+        position: absolute;
+        width: 64vw !important;
+    }
+    .register_div {
+        margin-left: 25%;
+        position: absolute;
+        width: 80vw !important;
+    }
+    .to-center {
+        width: 172%;
+    }
+    .main-photos-div {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+    .main-div-color {
+        background-image: url("../assets/rain-drops.jpg");
+        height: 9em;
+        width: 100%;
+        z-index: 1;
+    }
+    .card.medium {
+        margin-left: 20%;
+        position: relative;
+        margin-top: -5%;
+        width: 60vw;
+        height: 34vw;
+    }
+    .centered-btn {
+        margin-left: 30%;
+    }
+    .create-news-row {
+        margin-left: 24% !important;
+        position: absolute !important;
+        width: 100% !important;
+    }
+    .button-news {
+        margin-left: 74vw;
+        margin-top: -6vw;
+    }
+}

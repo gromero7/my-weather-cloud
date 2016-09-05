@@ -1,0 +1,58 @@
+{
+    "single-instance": true,
+    "additional_trust_anchors": [],
+    "main": "index.html",
+    "window": {
+        "kiosk": false,
+        "visible": true,
+        "kiosk_emulation": false,
+        "as_desktop": false,
+        "resizable": true,
+        "max_width": 1080,
+        "icon": "sun.png",
+        "position": "mouse",
+        "transparent": false,
+        "show": true,
+        "title": "My weather cloud",
+        "always_on_top": false,
+        "frame": true,
+        "height": 720,
+        "max_height": 880,
+        "width": 800,
+        "fullscreen": false,
+        "min_height": 200,
+        "min_width": 620,
+        "show_in_taskbar": true,
+        "toolbar": false
+    },
+    "nodejs": true,
+    "webexe_settings": {
+        "custom_script": "",
+        "nw_version": "0.14.5",
+        "mac-x32": false,
+        "nw_compression_level": 0,
+        "export_dir": "C:\\Users\\Gerard\\Desktop\\Web2ExeWin\\files",
+        "linux-x64": false,
+        "force_download": false,
+        "sdk_build": false,
+        "windows-x32": false,
+        "uncompressed_folder": false,
+        "windows-x64": true,
+        "mac-x64": false,
+        "download_dir": "C:/Users/Gerard/AppData/Local/Web2Executable/Web2Executable/files/downloads",
+        "linux-x32": false
+    },
+    "version": "0.1.0",
+    "name": "My Weather Cloud",
+    "app_name": "My weather cloud",
+    "webkit": {
+        "page-cache": false,
+        "plugin": true,
+        "java": false
+    },
+    "keywords": [
+        "mwc",
+        "weathercloud"
+    ],
+    "description": "Uploader for weather station data"
+}
